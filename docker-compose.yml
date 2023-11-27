@@ -1,0 +1,96 @@
+version: '3.9'
+
+# networks:
+#   five-stars:
+#     driver: bridge
+#     name: five-stars
+
+
+networks:
+  five-stars:
+
+
+services:
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                    DATABASE                         #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  database:
+    image: postgres
+    container_name: postgres_container
+    environment:
+      POSTGRES_PASSWORD: blabla123
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    networks:
+      - five-stars
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# #                   BACK-END                          #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  back-end:
+    depends_on:
+      - database
+    networks:
+      - five-stars
+    build: projet_five/back-end
+    container_name: back-end
+    image:  back-end
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./projet_five/back-end/five-stars:/five-stars"
+    restart: always
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                   FRONT-END                         #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  front-end:
+    depends_on:
+     - database
+     - back-end
+    networks:
+      - five-stars
+    build: projet_five/front-end
+    container_name: front-end
+    image: front-end
+    ports:
+      - "8080:8080"
+      - "19006:19006"
+    volumes:
+      - "./projet_five/front-end/five-stars:/five-stars"
+    restart: always
+
+# Déclaration du volume ici
+volumes:
+  postgres-data:
+
+
+
+
+
+
+
+# version: '3.8'
+
+
+
+  # psql-client:
+  #   image: postgres
+  #   container_name: my-psql-client
+  #   command: psql -h postgres -U postgres -d mydatabase
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - mynetwork
+
+

@@ -1,0 +1,25 @@
+FROM python:3.8-slim
+
+# Mise à jour des paquets et installation des dépendances
+RUN apt-get update && \
+    apt-get install -y libpq-dev gcc postgresql-client
+
+# Installation de SQLAlchemy et psycopg2
+RUN pip install sqlalchemy psycopg2-binary
+
+COPY ./myscript.sh .
+
+WORKDIR /five-stars
+
+
+COPY /five-stars /five-stars/
+
+EXPOSE 8000
+
+# RUN pip install --no-cache-dir
+
+
+# RUN pip install psycopg2
+
+
+ENTRYPOINT [ "bash", "../myscript.sh" ]

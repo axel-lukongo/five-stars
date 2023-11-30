@@ -1,7 +1,7 @@
 
 echo "====> INSTALLATION OF FASTAPI! <===="
 pip install fastapi
-echo "====> FASTAPI INSTALLED! <====\n\n"
+echo "====> FASTAPI INSTALLED! <===="
 
 echo "====> INSTALLATION OF UVICORN! <===="
 pip install "uvicorn[standard]"

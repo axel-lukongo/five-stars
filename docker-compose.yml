@@ -42,8 +42,8 @@ services:
     build: projet_five/back-end
     container_name: back-end
     image:  back-end
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
+    # environment:
+      # - DATABASE_URL=${DATABASE_URL}
     ports:
       - "8000:8000"
     volumes:

@@ -47,7 +47,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - "./projet_five/back-end/five-stars:/five-stars"
+      - "./projet_five/back-end/five_stars:/five_stars"
     restart: always
 
 

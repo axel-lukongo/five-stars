@@ -9,10 +9,10 @@ RUN pip install sqlalchemy psycopg2-binary
 
 COPY ./myscript.sh .
 
-WORKDIR /five-stars
+WORKDIR /five_stars
 
 
-COPY /five-stars /five-stars/
+COPY /five_stars /five_stars/
 
 EXPOSE 8000
 

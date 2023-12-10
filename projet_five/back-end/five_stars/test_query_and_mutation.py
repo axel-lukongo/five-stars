@@ -1,0 +1,218 @@
+import pytest
+from starlette.testclient import TestClient
+from main import app
+
+@pytest.fixture
+def client():
+    return TestClient(app)
+
+
+######################################### MUTATION ##########################################
+def test_mutation_User(client):
+    mutation = """
+    mutation {
+      creatUser(Name:"test____test", Pseudo:"test____pseudotest", Age:1230)
+    }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert json_response["data"]["creatUser"] == "User succesfuly creat"
+
+def test_mutation_User_sec(client):
+    mutation = """
+    mutation {
+      creatUser(Name:"test____test", Pseudo:"test____pseudotest", Age:1230)
+    }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    # Je vérifie que la requête a abouti avec un code d'état 200
+    assert response.status_code == 200
+    # Je converti le contenu de la réponse en JSON pour faciliter les assertions
+    json_response = response.json()
+    # Je verifie le retour de la mutation
+    assert json_response["data"]["creatUser"] == "User succesfuly creat"
+
+#######################################################################################
+def test_mutation_Team(client):
+    mutation = """
+    mutation {
+      createTeam(OwnerId:1, TeamName:"test___rivova")
+    }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert json_response["data"]["createTeam"] == "Team successfully created"
+
+
+#######################################################################################
+def test_mutation_Chat_Room(client):
+    mutation = """
+    mutation {
+      creatChatRoom(UserIdOne:1, UserIdTwo:2)
+    }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert json_response["data"]["creatChatRoom"] == "Chat Room correctly creat"
+
+#######################################################################################
+def test_mutation_msg(client):
+    mutation = """
+    mutation {
+      creatTeamMessage(Content:"test____je teste", SenderName:"test___axel", TeamId:1)
+    }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert json_response["data"]["creatTeamMessage"] == "message created"
+
+def test_mutation_prv_msg(client):
+    mutation = """
+    mutation {
+      creatPrvMessage(Content:"test____je teste", SenderName:"test___axel", ChatRoomId:1)
+    }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert json_response["data"]["creatPrvMessage"] == "message created"
+
+
+#######################################################################################
+def test_mutation_update_team(client):
+    mutation = """ 
+    mutation{
+	  updateTeam(Id:1, TeamName:"test___update", NbrUser:7)
+	}
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert json_response["data"]["updateTeam"] == "Team successfully update"
+
+#######################################################################################
+def test_mutation_update_user(client):
+    mutation = """ 
+      mutation{
+		    updateUser(Id:1, Age:23, Name:"test___axel", Pseudo:"test___lkg")
+	  }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    assert response.status_code == 200
+    json_response = response.json()
+    json_response["data"]["updateUser"] == "User succesfuly update"
+
+
+###########################>>>>>>>>>>>> QUERY <<<<<<<<<<<<<###############################
+def test_query_user(client):
+    query = """
+    query {
+      getUsers {
+        id
+      }
+    }
+    """
+    response = client.post("/graphql", json={"query": query})
+    # Vérifiez que la requête a abouti avec un code d'état 200
+    assert response.status_code == 200
+    # Convertissez le contenu de la réponse en JSON pour faciliter les assertions
+    json_response = response.json()
+    # Vérifiez que la clé "data" est présente dans la réponse
+    assert "data" in json_response
+    # Vérifiez que la clé "getUsers" est présente dans la réponse
+    assert "getUsers" in json_response["data"]
+
+#######################################################################################
+def test_query_team(client):
+    query = """
+    query {
+      getTeams {
+        id
+      }
+    }
+    """
+    response = client.post("/graphql", json={"query": query})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert "data" in json_response
+    assert "getTeams" in json_response["data"]
+
+#######################################################################################
+def test_query_team_msg(client):
+    query = """
+    query {
+      getTeamMessages(TeamId: 1) {
+        MessageContent
+      }
+    }
+    """
+    response = client.post("/graphql", json={"query": query})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert "data" in json_response
+    assert "getTeamMessages" in json_response["data"]
+
+def test_query_prv_msg(client):
+    query = """
+    query {
+      getPrivateMessages(ChatRoomId: 1) {
+        MessageContent
+      }
+    }
+    """
+    response = client.post("/graphql", json={"query": query})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert "data" in json_response
+    assert "getPrivateMessages" in json_response["data"]
+
+#######################################################################################
+def test_query_Chat_Room(client):
+    query = """
+    query {
+      getChatRoom(interlocutorId: 1) {
+        id
+      }
+    }
+    """
+    response = client.post("/graphql", json={"query": query})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert "data" in json_response
+    assert "getChatRoom" in json_response["data"]
+
+
+
+######################################### INDIVUDUAL QUERY ##############################################
+def test_query_user_one(client):
+    query = """
+    query {
+      getUser(id:1) {
+        id
+      }
+    }
+    """
+    response = client.post("/graphql", json={"query": query})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert "data" in json_response
+    assert "getUser" in json_response["data"]
+
+#######################################################################################
+def test_query_team_one(client):
+    query = """
+    query {
+      getTeam(Id:1) {
+        id
+      }
+    }
+    """
+    response = client.post("/graphql", json={"query": query})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert "data" in json_response
+    assert "getTeam" in json_response["data"]

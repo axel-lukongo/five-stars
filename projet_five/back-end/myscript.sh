@@ -1,4 +1,3 @@
-
 echo "====> INSTALLATION OF FASTAPI! <===="
 pip install fastapi
 echo "====> FASTAPI INSTALLED! <===="
@@ -11,16 +10,22 @@ echo "====> INSTALLATION OF DOTENV! <===="
 pip install python-dotenv
 echo "====> DOTENV INSTALLED! <===="
 
-
 echo "====> INSTALLATION OF STRAWBERRY! <===="
 pip install 'strawberry-graphql[fastapi]'
 echo "====> STRAWBERRY INSTALLED! <===="
-
 
 echo "====> INSTALLATION OF ALEMBIC! <===="
 #tools who allow us to migrate our models to our db
 pip install alembic
 echo "====> ALEMBIC INSTALLED! <===="
+
+echo "====> INSTALLATION OF PYTEST! <===="
+pip install pytest
+echo "====> PYTEST installed! <===="
+
+echo "====> INSTALLATION OF PYTEST! <===="
+pip install httpx
+echo "====> PYTEST installed! <===="
 
 echo "=========>>>>>>>>>> BACK END IS READY! <<<<<<<<<<<=============="
 

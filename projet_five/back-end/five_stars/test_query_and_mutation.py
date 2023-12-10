@@ -201,6 +201,7 @@ def test_query_user_one(client):
     json_response = response.json()
     assert "data" in json_response
     assert "getUser" in json_response["data"]
+    assert json_response['data']['getUser'] == {'id': 1}
 
 #######################################################################################
 def test_query_team_one(client):
@@ -216,3 +217,4 @@ def test_query_team_one(client):
     json_response = response.json()
     assert "data" in json_response
     assert "getTeam" in json_response["data"]
+    assert json_response["data"]["getTeam"] == {'id': 1}

@@ -3,6 +3,7 @@ apt-install nodejs
 npm i
 npm install -g react-native-cli
 npm install -g expo-cli
-# npx expo start --tunel -y
+npm install @apollo/client
+# npx expo start --tunnel 
 echo "====> THE SITE IS READY! <===="
 tail -f /dev/null

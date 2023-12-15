@@ -4,9 +4,11 @@ from sqlalchemy import Column, String, Integer, Table, ForeignKey, Boolean
 
 Users = Table('users', meta,
              Column('id', Integer, primary_key=True, autoincrement=True),
-             Column('name', String(length=255)),
+             Column('firstname', String(length=255)),
+             Column('lastname', String(length=255)),
              Column('pseudo', String(length=255)),
              Column('age', Integer),
+             Column('password', String(length=255)),
              Column('Team_id', Integer, ForeignKey('team.id'), nullable=True),
              Column('chat_room_id', Integer, ForeignKey('chat_room.id'), nullable=True)
              )

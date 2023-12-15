@@ -14,10 +14,10 @@ echo "====> INSTALLATION OF STRAWBERRY! <===="
 pip install 'strawberry-graphql[fastapi]'
 echo "====> STRAWBERRY INSTALLED! <===="
 
-echo "====> INSTALLATION OF ALEMBIC! <===="
-#tools who allow us to migrate our models to our db
-pip install alembic
-echo "====> ALEMBIC INSTALLED! <===="
+# echo "====> INSTALLATION OF ALEMBIC! <===="
+# #tools who allow us to migrate our models to our db
+# pip install alembic
+# echo "====> ALEMBIC INSTALLED! <===="
 
 echo "====> INSTALLATION OF PYTEST! <===="
 pip install pytest
@@ -26,6 +26,17 @@ echo "====> PYTEST installed! <===="
 echo "====> INSTALLATION OF PYTEST! <===="
 pip install httpx
 echo "====> PYTEST installed! <===="
+
+echo "====> INSTALLATION OF fastapi.middleware.cors! <===="
+pip install fastapi[all]
+echo "====> fastapi.middleware.cors installed! <===="
+
+echo "====> INSTALLATION OF PYTHON-JOSE PASSLIB! <===="
+pip install "python-jose[cryptography]"
+pip install "passlib[bcrypt]"
+
+echo "====> PYTHON-JOSE PASSLIB INSTALLED! <===="
+
 
 echo "=========>>>>>>>>>> BACK END IS READY! <<<<<<<<<<<=============="
 

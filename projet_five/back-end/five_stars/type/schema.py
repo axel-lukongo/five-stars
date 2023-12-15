@@ -3,9 +3,11 @@ import strawberry
 @strawberry.type
 class UserType:
 	id: int
-	name: str 
+	firstname: str
+	lastname: str
 	pseudo: str
 	age: int
+	password: str
  
 
 @strawberry.type

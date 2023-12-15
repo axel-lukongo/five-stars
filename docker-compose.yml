@@ -1,11 +1,5 @@
 version: '3.9'
 
-# networks:
-#   five-stars:
-#     driver: bridge
-#     name: five-stars
-
-
 networks:
   five-stars:
 

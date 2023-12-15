@@ -11,7 +11,7 @@ def client():
 def test_mutation_User(client):
     mutation = """
     mutation {
-      creatUser(Name:"test____test", Pseudo:"test____pseudotest", Age:1230)
+      creatUser(Firstname:"test____test", Lastname: "test__test__", Pseudo:"test____pseudotest", Password:"mypassword", Age:1230)
     }
     """
     response = client.post("/graphql", json={"query": mutation})
@@ -22,7 +22,7 @@ def test_mutation_User(client):
 def test_mutation_User_sec(client):
     mutation = """
     mutation {
-      creatUser(Name:"test____test", Pseudo:"test____pseudotest", Age:1230)
+      creatUser(Firstname:"sectest____test", Lastname: "sectest__test__", Pseudo:"sectest____pseudotest", Password:"secmypassword", Age:1230)
     }
     """
     response = client.post("/graphql", json={"query": mutation})

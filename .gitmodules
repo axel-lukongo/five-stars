@@ -1,0 +1,3 @@
+[submodule "projet_five/front-end/projet_five/front-end/five-stars"]
+	path = projet_five/front-end/projet_five/front-end/five-stars
+	url = https://github.com/axel-lukongo/five-stars.git

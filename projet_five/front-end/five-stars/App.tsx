@@ -24,7 +24,7 @@ export default function App() {
   return (
 	<ApolloProvider client={client}>
 		<NavigationContainer>
-		<Stack.Navigator initialRouteName="Page d'entree">
+		<Stack.Navigator initialRouteName="HomePage">
 			<Stack.Screen name="Page d'entree" component={FirstPage} />
 			<Stack.Screen name="SignUp" component={SignUp} />
 			<Stack.Screen name="Authentification" component={Authentification} />

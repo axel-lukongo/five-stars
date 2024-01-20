@@ -67,24 +67,3 @@ services:
 # Déclaration du volume ici
 volumes:
   postgres-data:
-
-
-
-
-
-
-
-# version: '3.8'
-
-
-
-  # psql-client:
-  #   image: postgres
-  #   container_name: my-psql-client
-  #   command: psql -h postgres -U postgres -d mydatabase
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - mynetwork
-
-

@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.8",
+    "@apollo/client": "^3.8.10",
     "@expo/webpack-config": "^19.0.0",
     "@react-native-community/blur": "^4.3.2",
     "@react-native-community/viewpager": "^5.0.11",

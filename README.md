@@ -25,5 +25,16 @@ this commande allow to run the unit test, and if every thing work correctelly it
 
 when you are in the front-end container for run the service type:
 ```
-npx expo start --tunnel 
+npx expo start
 ```
+
+You can access to the playground graphql with this url:
+```
+http://localhost:8000/graphql
+```
+
+### To Do ###
+1. Add the chat page
+2. Make the chat system works (send message with websocket)
+3. make page for create your team.
+4. create a page where all Teams appear

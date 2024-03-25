@@ -1,32 +1,29 @@
-version: '3.9'
+version: "3.9"
 
 networks:
   five-stars:
 
-
 services:
-# # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#                    DATABASE                         #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  #                    DATABASE                         #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
   database:
     image: postgres
     container_name: postgres_container
     environment:
-      POSTGRES_PASSWORD: blabla123
+      POSTGRES_PASSWORD: five_stars_db
       POSTGRES_DB: mydatabase
     ports:
       - "5432:5432"
     networks:
-      - five-stars
+      - "five-stars"
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
-
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# #                   BACK-END                          #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # #                   BACK-END                          #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
   back-end:
     depends_on:
@@ -35,30 +32,29 @@ services:
       - five-stars
     build: projet_five/back-end
     container_name: back-end
-    image:  back-end
+    image: back-end
     # environment:
-      # - DATABASE_URL=${DATABASE_URL}
+    # - DATABASE_URL=${DATABASE_URL}
     ports:
       - "8000:8000"
     volumes:
       - "./projet_five/back-end/five_stars:/five_stars"
     restart: always
 
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#                   FRONT-END                         #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  #                   FRONT-END                         #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   front-end:
     depends_on:
-     - database
-     - back-end
+      - database
+      - back-end
     networks:
       - five-stars
     build: projet_five/front-end
     container_name: front-end
     image: front-end
     ports:
-      - "8080:8080"
+      - "8081:8081"
       - "19006:19006"
     volumes:
       - "./projet_five/front-end/five-stars:/five-stars"

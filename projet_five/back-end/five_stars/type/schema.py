@@ -9,6 +9,11 @@ class UserType:
 	age: int
 	password: str
  
+@strawberry.type
+class LoginResponse:
+    user: UserType
+    access_token: str
+
 
 @strawberry.type
 class TeamType:

@@ -48,7 +48,8 @@ export default function WelcomPage({ navigation }) {
             }
 
             console.log("the token has been refresh");
-            SaveToken(result.data.login);
+            // attention a bien donner uniquement le token sinon l'application crash!!!
+            SaveToken(result.data.login.accessToken);
           } catch (mutationError) {
             console.error("Erreur de mutation :", mutationError);
             return;

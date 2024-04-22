@@ -13,7 +13,7 @@ import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import NavBar from "../navigationBar/navigation";
 
-export default function TeamPage({ navigation }) {
+export default function ChatList({ navigation }) {
   const [discussions, setDiscussions] = useState([
     { id: "1", title: "Hector " },
     { id: "2", title: "gigi " },
@@ -54,6 +54,10 @@ export default function TeamPage({ navigation }) {
   const handleDiscussionPress = (discussion) => {
     // Ajoutez la logique pour naviguer vers la page de discussion spécifique
     console.log("Discussion sélectionnée:", discussion);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "ChatPage" }],
+    });
   };
 
   return (

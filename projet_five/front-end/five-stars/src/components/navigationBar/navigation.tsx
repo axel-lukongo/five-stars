@@ -25,7 +25,7 @@ export default function NavBar({ navigation }) {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate("TeamPage")}>
+      <TouchableOpacity onPress={() => navigation.navigate("ChatList")}>
         <Image
           source={require("./../../../images/chat.png")}
           style={styles.emoticone}

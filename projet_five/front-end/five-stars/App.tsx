@@ -8,8 +8,8 @@ import AddPage from "./src/components/Add/add-page";
 import ProfilPage from "./src/components/profile/profile-page";
 import HomePage from "./src/components/home/home-page";
 import ResearchPage from "./src/components/research/research-page";
-import MessagePage from "./src/components/team-message/message-page";
-import TeamPage from "./src/components/team-message/team";
+import MessagePage from "./src/components/team-message/chat-page";
+import ChatList from "./src/components/team-message/chat-list-page";
 
 const Stack = createStackNavigator();
 import {
@@ -19,6 +19,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
+import ChatPage from "./src/components/team-message/chat-page";
 
 // Configurez votre client Apollo
 const client = new ApolloClient({
@@ -42,7 +43,8 @@ export default function App() {
           <Stack.Screen name="HomePage" component={HomePage} />
           <Stack.Screen name="ResearchPage" component={ResearchPage} />
           <Stack.Screen name="MessagePage" component={MessagePage} />
-          <Stack.Screen name="TeamPage" component={TeamPage} />
+          <Stack.Screen name="ChatList" component={ChatList} />
+          <Stack.Screen name="ChatPage" component={ChatPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

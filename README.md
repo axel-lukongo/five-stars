@@ -34,7 +34,9 @@ http://localhost:8000/graphql
 ```
 
 ### To Do ###
-1. Add the chat page
-2. Make the chat system works (send message with websocket)
-3. make page for create your team.
-4. create a page where all Teams appear
+1. Make the chat system works (send message with websocket)
+2. print all users in chat-list-page.tsx
+3. be able to cliaue on a user to acces to the chat page with the user
+4. test the direct message
+5. make page for create your team.
+6. create a page where all Teams appear

@@ -9,29 +9,24 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import NavBar from "../navigationBar/navigation";
+import { GET_USERS } from "../query_and_mutation/query";
+import { useQuery } from "@apollo/client";
 
 export default function ChatList({ navigation }) {
-  const [discussions, setDiscussions] = useState([
-    { id: "1", title: "Hector " },
-    { id: "2", title: "gigi " },
-    { id: "3", title: "rsko " },
-    { id: "4", title: "john4" },
-    { id: "5", title: "johnDoe" },
-    { id: "6", title: "axel " },
-    { id: "7", title: "lkg " },
-    { id: "8", title: "mark " },
-    { id: "9", title: "cogneur " },
-    { id: "10", title: "yamil " },
-    { id: "11", title: "jason " },
-    { id: "12", title: "roublare " },
-    { id: "13", title: "iop " },
-    { id: "14", title: "sacri " },
-    { id: "15", title: "mbapiñio" },
-    // Ajoutez autant d'éléments que nécessaire
-  ]);
+  const { loading, error, data } = useQuery(GET_USERS); // Effectuez la requête GraphQL
+
+  const [discussions, setDiscussions] = useState([]);
+
+  useEffect(() => {
+    if (data && data.getUsers) {
+      setDiscussions(
+        data.getUsers.map((user) => ({ id: user.id, title: user.firstname }))
+      );
+    }
+  }, [data]);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -45,7 +40,7 @@ export default function ChatList({ navigation }) {
         />
         <View>
           <Text style={styles.itemTextName}>{item.title}</Text>
-          <Text style={styles.itemTextMessage}>{"salut"}</Text>
+          <Text style={styles.itemTextMessage}>{"Message"}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -53,10 +48,12 @@ export default function ChatList({ navigation }) {
 
   const handleDiscussionPress = (discussion) => {
     // Ajoutez la logique pour naviguer vers la page de discussion spécifique
-    console.log("Discussion sélectionnée:", discussion);
+    // console.log("Discussion sélectionnée:", discussion);
     navigation.reset({
       index: 0,
-      routes: [{ name: "ChatPage" }],
+      routes: [
+        { name: "ChatPage", params: { interlocuteurId: discussion.id } },
+      ],
     });
   };
 

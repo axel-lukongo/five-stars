@@ -16,13 +16,13 @@ import { LOGIN } from "../query_and_mutation/mutation";
 import { SaveUserData } from "./user_data_management";
 
 export default function SignUpPage({ navigation }) {
- // Mutations for user creation and login
- const [createAccesToken, { loading, error }] = useMutation(LOGIN);
+  // Mutations for user creation and login
+  const [createAccesToken, { loading, error }] = useMutation(LOGIN);
   const [createUser, { loading: loadingCreateUser, error: loadingError }] =
     useMutation(CREATE_USER);
 
- // Local state for form inputs
- const [firstname, setFirstname] = useState("");
+  // Local state for form inputs
+  const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -31,8 +31,8 @@ export default function SignUpPage({ navigation }) {
   // Function to create a user with given inputs
   const handleCreatUser = async () => {
     try {
-     // Call the createUser mutation
-     const result = await createUser({
+      // Call the createUser mutation
+      const result = await createUser({
         variables: {
           firstname,
           lastname,
@@ -50,15 +50,14 @@ export default function SignUpPage({ navigation }) {
           password,
         },
       });
-      
+
       // Check if the login was successful
       if (token.data && token.data.login !== "failed") {
         // Save the access token and information of the user
         SaveToken(token.data.login.accessToken);
-
-        SaveUserData(username, password, firstname, lastname);
+        SaveUserData(username, password, firstname, lastname, result.data.creatUser);
         // Reset the navigation stack and navigate to HomePage
-       navigation.reset({
+        navigation.reset({
           index: 0,
           routes: [{ name: "ProfilPage" }],
         });
@@ -67,7 +66,6 @@ export default function SignUpPage({ navigation }) {
     } catch (mutationError) {
       console.error("Erreur de mutation :", mutationError);
     }
-
   };
 
   return (

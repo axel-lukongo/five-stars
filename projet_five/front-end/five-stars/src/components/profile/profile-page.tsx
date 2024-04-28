@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   profile-page.tsx                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alukongo <alukongo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 19:49:12 by alukongo          #+#    #+#             */
-/*   Updated: 2024/03/25 13:57:36 by alukongo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 import {
   Button,
   Image,
@@ -34,7 +22,6 @@ export default function ProfilPage({ navigation }) {
       setFirstname(await AsyncStorage.getItem("Firstname"));
       setLastname(await AsyncStorage.getItem("Lastname"));
     };
-
     getinfo();
   }, [firstname]);
   const logOut = () => {

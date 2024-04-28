@@ -36,12 +36,13 @@ export default function ConnexionPage({ navigation }) {
         return;
       }
        // Save the authentication token and user data
-       SaveToken(result.data.login.accessToken);
+      SaveToken(result.data.login.accessToken);
       SaveUserData(
         result.data.login.user.pseudo,
         result.data.login.user.password,
         result.data.login.user.firstname,
-        result.data.login.user.lastname
+        result.data.login.user.lastname,
+        result.data.login.user.id
       );
       // Reset the navigation stack and navigate to the HomePage screen
       navigation.reset({

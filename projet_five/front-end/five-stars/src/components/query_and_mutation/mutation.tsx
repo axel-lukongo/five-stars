@@ -21,6 +21,7 @@ export const LOGIN = gql`
   mutation Login($username: String!, $password: String!) {
     login(Username: $username, Password: $password){
       user{
+        id
         pseudo
         firstname
         lastname
@@ -28,5 +29,12 @@ export const LOGIN = gql`
       }
       accessToken
     }
+  }
+`;
+
+
+export const CREATE_TEAM = gql`
+  mutation CreateTeam($ownerId: Int!, $teamName: String!) {
+    createTeam(OwnerId: $ownerId, TeamName: $teamName)
   }
 `;

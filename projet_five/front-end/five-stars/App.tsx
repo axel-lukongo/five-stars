@@ -10,7 +10,7 @@ import HomePage from "./src/components/home/home-page";
 import ResearchPage from "./src/components/research/research-page";
 import MessagePage from "./src/components/team-message/chat-page";
 import ChatList from "./src/components/team-message/chat-list-page";
-
+import CreateTeam from "./src/components/Add/create_team";
 const Stack = createStackNavigator();
 import {
   ApolloClient,
@@ -45,6 +45,7 @@ export default function App() {
           <Stack.Screen name="MessagePage" component={MessagePage} />
           <Stack.Screen name="ChatList" component={ChatList} />
           <Stack.Screen name="ChatPage" component={ChatPage} />
+          <Stack.Screen name="CreateTeam" component={CreateTeam} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

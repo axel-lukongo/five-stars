@@ -10,11 +10,15 @@ import {
   View,
 } from "react-native";
 import NavBar from "../navigationBar/navigation";
-
+import CreateTeam from "./create_team";
 export default function AddPage({ navigation }) {
-  const handleButtonPress = (buttonName) => {
+  const handleButtonPress = (buttonName) =>   {
     // Ajoutez ici la logique à exécuter lorsque le bouton est pressé
-    console.log(`Bouton ${buttonName} pressé`);
+    // console.log(`Bouton ${buttonName} pressé`);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "CreateTeam" }],
+    });
   };
   return (
     <ImageBackground

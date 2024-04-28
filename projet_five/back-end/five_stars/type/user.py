@@ -58,11 +58,12 @@ class UserQuery:
 class UserMutation:
 
     @strawberry.mutation
-    def creatUser(self, Firstname:str, Pseudo:str, Age:int, Lastname: str, Password: str) -> str:
+    def creatUser(self, Firstname:str, Pseudo:str, Age:int, Lastname: str, Password: str) -> int:
         try:
           result = conn.execute(Users.insert().values(firstname=Firstname, pseudo=Pseudo, age=Age, lastname=Lastname, password=Password))
           conn.commit()
-          return "User succesfuly creat"
+          user_id = result.inserted_primary_key[0]  # Récupérer l'ID de l'utilisateur nouvellement créé
+          return user_id
         except SQLAlchemyError as e:
           return "Error in creatUser"+str(e.message)
 

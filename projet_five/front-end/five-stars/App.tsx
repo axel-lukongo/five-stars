@@ -20,6 +20,7 @@ import {
   gql,
 } from "@apollo/client";
 import ChatPage from "./src/components/team-message/chat-page";
+import SearchTeam from "./src/components/Add/search_team";
 
 // Configurez votre client Apollo
 const client = new ApolloClient({
@@ -46,6 +47,7 @@ export default function App() {
           <Stack.Screen name="ChatList" component={ChatList} />
           <Stack.Screen name="ChatPage" component={ChatPage} />
           <Stack.Screen name="CreateTeam" component={CreateTeam} />
+          <Stack.Screen name="SearchTeam" component={SearchTeam} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

@@ -1,96 +1,76 @@
-import {
-  Button,
-  Image,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  Touchable,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, Button, Image, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
 import { removeUserData } from "../authentification/user_data_management";
 import NavBar from "../navigationBar/navigation";
 
 export default function ProfilPage({ navigation }) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+
   useEffect(() => {
-    const getinfo = async () => {
-      setFirstname(await AsyncStorage.getItem("Firstname"));
-      setLastname(await AsyncStorage.getItem("Lastname"));
+    let timeout
+    const fetchData = async () => {
+      setTimeout(async () => {
+        setFirstname(await AsyncStorage.getItem("Firstname"));
+        setLastname(await AsyncStorage.getItem("Lastname"));
+      }, 30);
     };
-    getinfo();
-  }, [firstname]);
+
+    fetchData();
+    return () => clearTimeout(timeout);
+  }, []); // Modifier ici
+
   const logOut = () => {
     removeUserData();
     navigation.reset({
       index: 0,
       routes: [{ name: "WelcomPage" }],
     });
-    // Implement your logout logic here
   };
-  return (
-    /****************
-     * il faudra une variable pour le nombre de match, nombre de victoir et defaite
-     * ajouter une photo de profile
-     * trouver comment partager photo et video
-     ****************/
 
+  return (
     <LinearGradient
-      colors={["#1c1c1c", "#0C2E00"]} // Assurez-vous que les couleurs sont correctement définies
+      colors={["#1c1c1c", "#0C2E00"]}
       style={styles.container}
     >
-      {/* Ajoutez le bouton en haut à droite */}
       <View style={styles.topRight}>
         <Button title="Log out" onPress={logOut} />
       </View>
-      {/* Photo de profil centrée en haut */}
       <View style={styles.profileImageContainer}>
         <Image
           source={require("./../../../images/user.png")}
           style={styles.profileImage}
         />
       </View>
-
-      {/* Nom et prénom */}
       <View style={styles.nameContainer}>
         <Text style={styles.nameText}>
-          {" "}
           {firstname} {lastname}
         </Text>
       </View>
       <View style={styles.bar} />
-
-      {/* Carrés en deux lignes et deux colonnes */}
       <View style={styles.squareContainer}>
-        {/* Première ligne */}
         <View style={styles.rowContainer}>
           <View style={styles.square} />
           <View style={styles.square} />
         </View>
-
-        {/* Deuxième ligne */}
         <View style={styles.rowContainer}>
           <View style={styles.square} />
           <View style={styles.square} />
         </View>
       </View>
-
       <NavBar navigation={navigation} />
     </LinearGradient>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // paddingBottom: 100, // Assurez-vous que cela est suffisant pour rendre toute la navbar visible
-    // width: '100%',
   },
   topRight: {
     position: "absolute",

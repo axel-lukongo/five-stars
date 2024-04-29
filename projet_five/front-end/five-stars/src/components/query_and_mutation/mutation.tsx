@@ -38,3 +38,13 @@ export const CREATE_TEAM = gql`
     createTeam(OwnerId: $ownerId, TeamName: $teamName)
   }
 `;
+
+
+export const GET_TEAMS = gql`
+  query {
+    getTeams {
+      id
+      teamName
+    }
+  }
+`;

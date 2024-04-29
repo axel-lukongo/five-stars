@@ -12,7 +12,7 @@ import {
 import NavBar from "../navigationBar/navigation";
 import CreateTeam from "./create_team";
 export default function AddPage({ navigation }) {
-  const handleButtonPress = (buttonName) =>   {
+  const handleCreatTeam = () => {
     // Ajoutez ici la logique à exécuter lorsque le bouton est pressé
     // console.log(`Bouton ${buttonName} pressé`);
     navigation.reset({
@@ -20,6 +20,16 @@ export default function AddPage({ navigation }) {
       routes: [{ name: "CreateTeam" }],
     });
   };
+
+  const handleSearchTeam = () => {
+    // Ajoutez ici la logique à exécuter lorsque le bouton est pressé
+    // console.log(`Bouton ${buttonName} pressé`);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "SearchTeam" }],
+    });
+  };
+
   return (
     <ImageBackground
       source={require("./../../../images/image4.jpg")}
@@ -32,14 +42,14 @@ export default function AddPage({ navigation }) {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => handleButtonPress("Bouton 1")}
+          onPress={() => handleCreatTeam()}
         >
           <Text>Cree une equipe</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => handleButtonPress("Bouton 2")}
+          onPress={() => handleSearchTeam()}
         >
           <Text>Recherche une equipe</Text>
         </TouchableOpacity>

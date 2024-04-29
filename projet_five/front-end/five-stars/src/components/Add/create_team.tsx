@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { CREATE_TEAM } from "../query_and_mutation/mutation";
 import { useMutation } from "@apollo/client";
+import { Alert } from "react-native";
 
 const CreateTeamForm = ({ navigation }) => {
   const [teamName, setTeamName] = useState("");
@@ -33,9 +34,22 @@ const CreateTeamForm = ({ navigation }) => {
         },
       });
       console.log("Team created:", data.createTeam);
+
+      if (data.createTeam === "Team successfully created") {
+        // Afficher une alerte de succès pendant 5 secondes
+        setTimeout(() => {
+          // Fermer l'alerte après 5 secondes
+          Alert.alert("Success", "Team successfully created", [{ text: "OK", style: "cancel" }]);
+        }, 500);
+
+        // Redirection ou autre action si nécessaire
+        handleGoBack();
+      } 
+
       handleGoBack();
     } catch (error) {
       console.error("Error creating team:", error);
+      Alert.alert("Error", "Error creating team", [{ text: "OK" }]);
     }
   };
 

@@ -15,9 +15,9 @@ export default function PublicProfilPage({ navigation, route }) {
   });
 
   useEffect(() => {
-    if(data && data.getUser){
-      setFirstname( data.getUser.firstname );
-      setLastname( data.getUser.lastname);
+    if (data && data.getUser) {
+      setFirstname(data.getUser.firstname);
+      setLastname(data.getUser.lastname);
     }
   }, [data]);
 
@@ -29,10 +29,7 @@ export default function PublicProfilPage({ navigation, route }) {
   };
 
   return (
-    <LinearGradient
-      colors={["#1c1c1c", "#0C2E00"]}
-      style={styles.container}
-    >
+    <LinearGradient colors={["#fff", "#c8dbc8"]} style={styles.container}>
       <View style={styles.topRight}>
         <Button title="<back" onPress={GoBack} />
       </View>
@@ -62,7 +59,6 @@ export default function PublicProfilPage({ navigation, route }) {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -89,7 +85,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "white",
+    color: "black",
   },
   squareContainer: {
     marginTop: 50,

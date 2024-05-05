@@ -10,7 +10,7 @@ export default function ProfilPage({ navigation }) {
   const [lastname, setLastname] = useState("");
 
   useEffect(() => {
-    let timeout
+    let timeout;
     const fetchData = async () => {
       setTimeout(async () => {
         setFirstname(await AsyncStorage.getItem("Firstname"));
@@ -31,10 +31,7 @@ export default function ProfilPage({ navigation }) {
   };
 
   return (
-    <LinearGradient
-      colors={["#1c1c1c", "#0C2E00"]}
-      style={styles.container}
-    >
+    <LinearGradient colors={["#fff", "#c8dbc8"]} style={styles.container}>
       <View style={styles.topRight}>
         <Button title="Log out" onPress={logOut} />
       </View>
@@ -65,7 +62,6 @@ export default function ProfilPage({ navigation }) {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -92,7 +88,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "white",
+    color: "black",
   },
   squareContainer: {
     marginTop: 50,
@@ -112,7 +108,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     padding: "22%",
-    backgroundColor: "black", // Couleur de fond du carré
+    backgroundColor: "#535753", // Couleur de fond du carré
     margin: 5,
     borderRadius: 20,
   },

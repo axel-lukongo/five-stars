@@ -65,7 +65,7 @@ export default function HomePage({ navigation }) {
 
   return (
     <LinearGradient
-      colors={["#1c1c1c", "#0C2E00"]} // Assurez-vous que les couleurs sont correctement définies
+      colors={["#fff", "#c8dbc8"]}
       style={styles.container}
     >
       <FlatList

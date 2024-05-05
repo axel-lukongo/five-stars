@@ -58,10 +58,9 @@ export default function ChatList({ navigation }) {
   };
 
   return (
-    <LinearGradient
-      colors={["#1c1c1c", "#0C2E00"]} // Assurez-vous que les couleurs sont correctement définies
-      style={styles.container}
-    >
+    <LinearGradient 
+      colors={["#fff", "#c8dbc8"]}
+      style={styles.container}>
       {/* Titre de la page, fixe */}
       <View style={styles.header}>
         <Text style={styles.pageTitle}>Message</Text>
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
 
   pageTitle: {
     fontSize: 24,
-    color: "white",
+    color: "black",
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -121,12 +120,12 @@ const styles = StyleSheet.create({
   itemTextName: {
     fontSize: 20,
     fontWeight: "600",
-    color: "white",
+    color: "black",
   },
 
   itemTextMessage: {
     fontSize: 15,
-    color: "white",
+    color: "black",
   },
 
   avatar: {

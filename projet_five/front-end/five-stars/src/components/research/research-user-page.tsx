@@ -19,7 +19,7 @@ export default function ResearchPage({ navigation }) {
   const { loading, error, data } = useQuery(GET_USERS);
 
   const [Users, setUsers] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (data && data.getUsers) {
@@ -29,8 +29,8 @@ export default function ResearchPage({ navigation }) {
     }
   }, [data]);
 
-  const filteredUsers = Users.filter(
-    User => User.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredUsers = Users.filter((User) =>
+    User.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const renderItem = ({ item }) => (
@@ -53,17 +53,14 @@ export default function ResearchPage({ navigation }) {
   const handleUserPress = (User) => {
     navigation.reset({
       index: 0,
-      routes: [
-        { name: "PublicProfilPage", params: { UserId: User.id } },
-      ],
+      routes: [{ name: "PublicProfilPage", params: { UserId: User.id } }],
     });
   };
 
   return (
-    <LinearGradient
-      colors={["#1c1c1c", "#0C2E00"]}
-      style={styles.container}
-    >
+    <LinearGradient 
+      colors={["#fff", "#c8dbc8"]}
+      style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.pageTitle}>Trouver un user</Text>
       </View>
@@ -94,7 +91,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     padding: 10,
-    backgroundColor: "#333",
+    backgroundColor: "#c8dbc8",
   },
   searchInput: {
     height: 40,
@@ -109,7 +106,7 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     fontSize: 24,
-    color: "white",
+    color: "black",
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -125,7 +122,7 @@ const styles = StyleSheet.create({
   itemTextName: {
     fontSize: 20,
     fontWeight: "600",
-    color: "white",
+    color: "black",
   },
   avatar: {
     width: 50,

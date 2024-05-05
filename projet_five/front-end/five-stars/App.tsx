@@ -21,6 +21,7 @@ import {
 } from "@apollo/client";
 import ChatPage from "./src/components/team-message/chat-page";
 import SearchTeam from "./src/components/Add/search_team";
+import PublicProfilPage from "./src/components/research/public-profile-page";
 
 // Configurez votre client Apollo
 const client = new ApolloClient({
@@ -41,6 +42,7 @@ export default function App() {
           <Stack.Screen name="ConnexionPage" component={ConnexionPage} />
           <Stack.Screen name="AddPage" component={AddPage} />
           <Stack.Screen name="ProfilPage" component={ProfilPage} />
+          <Stack.Screen name="PublicProfilPage" component={PublicProfilPage} />
           <Stack.Screen name="HomePage" component={HomePage} />
           <Stack.Screen name="ResearchPage" component={ResearchPage} />
           <Stack.Screen name="MessagePage" component={MessagePage} />

@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -16,8 +15,9 @@ import { useQuery } from "@apollo/client";
 import { FlatList } from "react-native-gesture-handler";
 
 const SearchTeam = ({ navigation }) => {
-  const { loading, error, data, refetch } = useQuery(GET_TEAMS); // Utilisez refetch pour recharger les données
+  const { loading, error, data, refetch } = useQuery(GET_TEAMS);
   const [teamList, setTeamList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     refetch();
@@ -34,6 +34,10 @@ const SearchTeam = ({ navigation }) => {
       routes: [{ name: "AddPage" }],
     });
   };
+
+  const filteredTeamList = teamList.filter(
+    team => team.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -69,9 +73,20 @@ const SearchTeam = ({ navigation }) => {
             </View>
             <View style={styles.headerLeft}></View>
           </View>
+
+          {/* Barre de recherche */}
+          <View style={styles.searchContainer}>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Rechercher une équipe..."
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+            />
+          </View>
+
           <View style={styles.content}>
             <FlatList
-              data={teamList}
+              data={filteredTeamList}
               renderItem={renderItem}
               keyExtractor={(item) => item.id.toString()}
             />
@@ -132,6 +147,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     color: "white",
+  },
+  searchContainer: {
+    padding: 10,
+    backgroundColor: "rgba(255, 255, 255, 0.0)",
+  },
+  searchInput: {
+    height: 40,
+    backgroundColor: "#fff",
+    paddingHorizontal: 10,
+    borderRadius: 5,
   },
   backgroundImage: {
     flex: 1,

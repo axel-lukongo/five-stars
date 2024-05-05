@@ -34,8 +34,8 @@ http://localhost:8000/graphql
 ```
 
 ### To Do ###
-1. make a page to create a team
-2. make a page where we have a view on all team
-3. when a team is created he will appear in the chat-list-page
-4. make a page where you can search a team and a user by his name
+<!-- 1. make a page to create a team -->
+<!-- 2. make a page where we have a view on all team -->
+<!-- 3. when a team is created he will appear in the chat-list-page -->
+<!-- 4. make a page where you can search a team and a user by his name -->
 5. we will focus on the profile and maybe change the design or the colors

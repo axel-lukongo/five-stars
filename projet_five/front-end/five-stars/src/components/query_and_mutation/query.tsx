@@ -25,3 +25,13 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const GET_PROFILE_USER = gql`
+  query GetUser($id: Int!) {
+    getUser(id: $id) {
+      lastname
+      firstname
+      pseudo
+    }
+  }
+`;

@@ -7,7 +7,7 @@ import ConnexionPage from "./src/components/authentification/connexion-page";
 import AddPage from "./src/components/Add/add-page";
 import ProfilPage from "./src/components/profile/profile-page";
 import HomePage from "./src/components/home/home-page";
-import ResearchPage from "./src/components/research/research-page";
+import ResearchPage from "./src/components/research/research-user-page";
 import MessagePage from "./src/components/team-message/chat-page";
 import ChatList from "./src/components/team-message/chat-list-page";
 import CreateTeam from "./src/components/Add/create_team";

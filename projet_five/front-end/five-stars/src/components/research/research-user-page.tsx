@@ -9,17 +9,20 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Modal,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import NavBar from "../navigationBar/navigation";
 import { GET_USERS } from "../query_and_mutation/query";
 import { useQuery } from "@apollo/client";
+import { styles } from "./styles";
+import { renderModalUserItem } from "./modal-button";
 
 export default function ResearchPage({ navigation }) {
   const { loading, error, data, refetch } = useQuery(GET_USERS);
-
   const [Users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     refetch();
@@ -58,12 +61,26 @@ export default function ResearchPage({ navigation }) {
     });
   };
 
+  const handleRightButtonPress = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
-    <LinearGradient 
-      colors={["#fff", "#c8dbc8"]}
-      style={styles.container}>
+    <LinearGradient colors={["#fff", "#c8dbc8"]} style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.pageTitle}>Trouver un user</Text>
+        <View style={styles.rightHeader}>
+          <TouchableOpacity onPress={handleRightButtonPress}>
+              <Image
+                source={require("./../../../images/add-friend.png")} // Remplacez le chemin par le chemin de votre image
+                style={styles.rightButtonImage} // Assurez-vous de définir un style pour votre image
+              />
+           </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.searchContainer}>
         <TextInput
@@ -80,56 +97,23 @@ export default function ResearchPage({ navigation }) {
         keyExtractor={(item) => item.id}
       />
 
+
+      <Modal visible={isModalVisible} transparent={true} animationType="slide">
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <FlatList
+              style={styles.flatList} // Ajoutez cette ligne pour appliquer le style
+              data={filteredUsers}
+              renderItem={renderModalUserItem}
+              keyExtractor={(item) => item.id}
+            />
+            <TouchableOpacity onPress={handleCloseModal}>
+              <Text>Fermer</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <NavBar navigation={navigation} />
     </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingBottom: 100,
-  },
-  searchContainer: {
-    padding: 10,
-    backgroundColor: "#c8dbc8",
-  },
-  searchInput: {
-    height: 40,
-    backgroundColor: "#fff",
-    paddingHorizontal: 10,
-    borderRadius: 5,
-  },
-  header: {
-    paddingTop: 50,
-    paddingBottom: 10,
-    backgroundColor: "transparent",
-  },
-  pageTitle: {
-    fontSize: 24,
-    color: "black",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  itemContainer: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
-  },
-  itemTextName: {
-    fontSize: 20,
-    fontWeight: "600",
-    color: "black",
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
-  },
-});

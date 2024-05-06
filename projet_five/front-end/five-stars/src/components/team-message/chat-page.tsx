@@ -105,10 +105,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#0C2E00",
+    backgroundColor: "#c8dbc8",
   },
   headerContainer: {
-    backgroundColor: "#333", // Couleur de fond du conteneur du nom et de l'avatar (gris foncé)
+    backgroundColor: "#81c27c", // Couleur de fond du conteneur du nom et de l'avatar (gris foncé)
     paddingTop: 20, // Padding supérieur
     paddingHorizontal: 20,
     borderRadius: 20,
@@ -148,17 +148,17 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   myName: {
-    color: "#FFFFFF",
+    color: "black",
     fontSize: 12,
   },
   messageText: {
-    color: "#FFFFFF", // Couleur du texte du message
+    color: "black", // Couleur du texte du message
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     borderTopWidth: 1,
-    borderTopColor: "#ccc",
+    borderTopColor: "#777877",
     paddingTop: 10,
   },
   input: {
@@ -167,9 +167,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#777877",
     borderRadius: 20,
-    color: "#FFFFFF", // Définir la couleur du texte en blanc
+    color: "black", // Définir la couleur du texte en blanc
   },
   backbutton: {
     width: 20,

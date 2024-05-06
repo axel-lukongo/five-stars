@@ -16,18 +16,19 @@ import { GET_USERS } from "../query_and_mutation/query";
 import { useQuery } from "@apollo/client";
 
 export default function ResearchPage({ navigation }) {
-  const { loading, error, data } = useQuery(GET_USERS);
+  const { loading, error, data, refetch } = useQuery(GET_USERS);
 
   const [Users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
+    refetch();
     if (data && data.getUsers) {
       setUsers(
         data.getUsers.map((user) => ({ id: user.id, title: user.firstname }))
       );
     }
-  }, [data]);
+  }, [data, refetch]);
 
   const filteredUsers = Users.filter((User) =>
     User.title.toLowerCase().includes(searchQuery.toLowerCase())

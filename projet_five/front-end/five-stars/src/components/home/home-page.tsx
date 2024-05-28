@@ -65,7 +65,7 @@ export default function HomePage({ navigation }) {
 
   return (
     <LinearGradient
-      colors={["#fff", "#c8dbc8"]}
+      colors={["#fff", "#fff"]}
       style={styles.container}
     >
       <FlatList
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     padding: 16,
-    backgroundColor: "#3498db", // Couleur de la barre d'informations en temps réel
+    backgroundColor: "green", // Couleur de la barre d'informations en temps réel
   },
   headerText: {
     fontSize: 18,

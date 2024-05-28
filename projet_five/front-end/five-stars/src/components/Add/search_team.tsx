@@ -139,9 +139,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   itemContainer: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    padding: 40,
+    margin: 20, // Ajoute un espace entre les rectangles
+    borderRadius: 10, // Pour arrondir les coins du rectangle
+    backgroundColor: "rgba(255, 255, 255, 0.1)", // Couleur de fond du rectangle
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 2, // Pour l'effet d'ombre sur Android
   },
   itemTextName: {
     fontSize: 20,

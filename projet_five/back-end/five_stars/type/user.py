@@ -85,7 +85,6 @@ class UserMutation:
         try:
             request = info.context["request"]
             authorization: str = request.headers.get("Authorization")
-            print("====>>>", authorization)
             # if authorization:
             #   token = authorization.split(" ")[1]
               # is_valid = validate_token(token)  # Remplacer par votre fonction de validation

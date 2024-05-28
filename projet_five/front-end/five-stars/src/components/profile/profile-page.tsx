@@ -31,7 +31,7 @@ export default function ProfilPage({ navigation }) {
   };
 
   return (
-    <LinearGradient colors={["#fff", "#c8dbc8"]} style={styles.container}>
+    <LinearGradient colors={["#fff", "#fff"]} style={styles.container}>
       <View style={styles.topRight}>
         <Button title="Log out" onPress={logOut} />
       </View>

@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#c8dbc8",
+    backgroundColor: "#fff",
   },
   headerContainer: {
     backgroundColor: "#81c27c", // Couleur de fond du conteneur du nom et de l'avatar (gris foncé)

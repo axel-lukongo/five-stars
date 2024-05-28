@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -7,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   searchContainer: {
     padding: 10,
-    backgroundColor: "#c8dbc8",
+    backgroundColor: "#4E82DD",
   },
   searchInput: {
     height: 40,
@@ -32,8 +33,21 @@ export const styles = StyleSheet.create({
   },
   itemContainer: {
     padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    // flexDirection: "row",
+    margin: 10, // Ajoute un espace entre les rectangles
+    borderRadius: 10, // Pour arrondir les coins du rectangle
+    backgroundColor: "#f0f0f0", // Couleur de fond du rectangle
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 2, // Pour l'effet d'ombre sur Android
+  },
+
+  userInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
   },
   itemTextName: {
     fontSize: 20,
@@ -48,7 +62,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.7)",
   },
 
-  
   rightHeader: {
     position: "absolute",
     top: 50,
@@ -73,7 +86,6 @@ export const styles = StyleSheet.create({
   },
   modalContent: {
     width: "100%", // ajuster la largeur du contenu modal
-
     backgroundColor: "#fff",
     padding: 10,
     borderRadius: 10,
@@ -115,5 +127,32 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontWeight: "bold",
+  },
+
+  moreButton: {
+    marginLeft: 'auto',
+    padding: 10,
+  },
+  moreButtonText: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  dropdownMenu: {
+    position: "absolute",
+    top: 40,
+    right: 10,
+    width: 100,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    padding: 8,
+  },
+  menuItem: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    fontSize: 16,
+    color: "black",
+    textAlign: "center",
   },
 });

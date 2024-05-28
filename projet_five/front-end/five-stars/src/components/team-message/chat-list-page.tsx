@@ -58,9 +58,7 @@ export default function ChatList({ navigation }) {
   };
 
   return (
-    <LinearGradient 
-      colors={["#fff", "#c8dbc8"]}
-      style={styles.container}>
+    <LinearGradient colors={["#EBEBEB", "#EBEBEB"]} style={styles.container}>
       {/* Titre de la page, fixe */}
       <View style={styles.header}>
         <Text style={styles.pageTitle}>Message</Text>
@@ -113,8 +111,14 @@ const styles = StyleSheet.create({
 
   itemContainer: {
     padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    margin: 10, // Ajoute un espace entre les rectangles
+    borderRadius: 20, // Pour arrondir les coins du rectangle
+    backgroundColor: "#f0f0f0", // Couleur de fond du rectangle
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 2, // Pour l'effet d'ombre sur Android
   },
 
   itemTextName: {

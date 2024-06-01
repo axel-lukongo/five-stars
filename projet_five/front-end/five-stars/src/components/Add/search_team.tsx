@@ -10,7 +10,7 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { GET_TEAMS } from "../query_and_mutation/mutation";
+import { GET_TEAMS } from "../query_and_mutation/query";
 import { useQuery } from "@apollo/client";
 import { FlatList } from "react-native-gesture-handler";
 

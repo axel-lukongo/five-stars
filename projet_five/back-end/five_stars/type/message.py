@@ -45,4 +45,3 @@ class MessageMutation:
           return "message created"
         except SQLAlchemyError as e:
             return e
-

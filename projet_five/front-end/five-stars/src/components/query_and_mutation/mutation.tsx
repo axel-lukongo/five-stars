@@ -40,11 +40,10 @@ export const CREATE_TEAM = gql`
 `;
 
 
-export const GET_TEAMS = gql`
-  query {
-    getTeams {
-      id
-      teamName
-    }
+export const CREATE_CHAT_ROOM = gql`
+  mutation CreatChatRoom($userIdOne: Int!, $userIdTwo: String!) {
+    creatChatRoom(UserIdOne: $userIdOne, UserIdTwo: $userIdTwo)
   }
 `;
+
+

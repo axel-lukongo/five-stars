@@ -19,6 +19,7 @@ const ChatPage = ({ navigation, route }) => {
   const [messages, setMessages] = useState([]);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [UserId, setUserId] = useState("");
   const [headerHeight, setHeaderHeight] = useState(0);
   const [interlocutorName, setInterlocutorName] = useState("");
   const { loading, error, data } = useQuery(GET_USER, {
@@ -35,6 +36,7 @@ const ChatPage = ({ navigation, route }) => {
     const getinfo = async () => {
       setFirstname(await AsyncStorage.getItem("Firstname"));
       setLastname(await AsyncStorage.getItem("Lastname"));
+      setUserId(await AsyncStorage.getItem("UserId"));
     };
 
     getinfo();
@@ -43,7 +45,7 @@ const ChatPage = ({ navigation, route }) => {
   const goBack = () => {
     navigation.reset({
       index: 0,
-      routes: [{ name: "ChatList" }],
+      routes: [{ name: "ChatList", params: { UserId: UserId } }],
     });
   };
   const onHeaderLayout = (event) => {

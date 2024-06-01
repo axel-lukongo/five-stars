@@ -12,21 +12,31 @@ import {
 import { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import NavBar from "../navigationBar/navigation";
-import { GET_USERS } from "../query_and_mutation/query";
+import { GET_ALL_MY_CHAT_ROOM, GET_USERS } from "../query_and_mutation/query";
 import { useQuery } from "@apollo/client";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRoute } from "@react-navigation/native";
 
 export default function ChatList({ navigation }) {
-  const { loading, error, data } = useQuery(GET_USERS); // Effectuez la requête GraphQL
-
+  const route = useRoute();
+  const UserId = parseInt(route.params.UserId, 10);
   const [discussions, setDiscussions] = useState([]);
 
+  const { loading, error, data } = useQuery(GET_ALL_MY_CHAT_ROOM, {
+    variables: { UserId: UserId },
+    skip: !UserId,
+  });
   useEffect(() => {
-    if (data && data.getUsers) {
+    
+    if (data && data.getallMyChatRoom) {
       setDiscussions(
-        data.getUsers.map((user) => ({ id: user.id, title: user.firstname }))
+        data.getallMyChatRoom.map((room) => ({
+          id: room.UserIdOne === UserId? room.UserIdTwo:room.UserIdOne,
+          title: room.UserIdOne === UserId? room.interlocutorNameTwo: room.interlocutorNameOne
+        }))
       );
     }
-  }, [data]);
+  }, [UserId]);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -47,16 +57,11 @@ export default function ChatList({ navigation }) {
   );
 
   const handleDiscussionPress = (discussion) => {
-    // Ajoutez la logique pour naviguer vers la page de discussion spécifique
-    // console.log("Discussion sélectionnée:", discussion);
     navigation.reset({
       index: 0,
-      routes: [
-        { name: "ChatPage", params: { interlocuteurId: discussion.id } },
-      ],
+      routes: [{ name: "ChatPage", params: { interlocuteurId: discussion.id } }],
     });
   };
-
   return (
     <LinearGradient colors={["#EBEBEB", "#EBEBEB"]} style={styles.container}>
       {/* Titre de la page, fixe */}

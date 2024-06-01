@@ -35,3 +35,39 @@ export const GET_PROFILE_USER = gql`
     }
   }
 `;
+
+
+export const GET_ALL_CHAT_ROOM = gql`
+  query {
+    getallChatRoom {
+      id
+      UserIdOne
+      UserIdTwo
+      interlocutorNameOne
+      interlocutorNameTwo
+    }
+  }
+`;
+
+
+export const GET_ALL_MY_CHAT_ROOM = gql`
+  query GetallMyChatRoom($UserId: Int!){
+    getallMyChatRoom(UserId: $UserId) {
+      id
+      UserIdOne
+      UserIdTwo
+      interlocutorNameOne
+      interlocutorNameTwo
+    }
+  }
+`;
+
+
+export const GET_TEAMS = gql`
+  query {
+    getTeams {
+      id
+      teamName
+    }
+  }
+`;

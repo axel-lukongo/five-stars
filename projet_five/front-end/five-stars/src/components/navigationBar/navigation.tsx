@@ -1,7 +1,22 @@
-import React from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useState } from "react";
 import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
 
 export default function NavBar({ navigation }) {
+  const [UserId, setUserId] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const id = await AsyncStorage.getItem("UserId");
+        setUserId(id);
+      } catch (error) {
+        console.error("Error fetching UserId from AsyncStorage", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <View style={styles.navigation_Bar}>
       <TouchableOpacity onPress={() => navigation.navigate("ResearchPage")}>
@@ -25,7 +40,7 @@ export default function NavBar({ navigation }) {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate("ChatList")}>
+      <TouchableOpacity onPress={() => navigation.navigate("ChatList", { UserId: UserId })}>
         <Image
           source={require("./../../../images/chat.png")}
           style={styles.emoticone}

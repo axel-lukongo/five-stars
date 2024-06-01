@@ -15,12 +15,10 @@ Users = Table('users', meta,
 
 ChatRoom = Table('chat_room', meta,
                 Column('id', Integer, primary_key=True, autoincrement=True),
-                # Column('interlocutor_id_one', Integer),
-                # Column('interlocutor_id_two', Integer),
                 Column('interlocutor_name_one', String,nullable=True),
                 Column('interlocutor_name_two', String,nullable=True),
                 Column('User_id_one', Integer, ForeignKey('users.id'), nullable=True),
-                Column('User_id_two', Integer, ForeignKey('users.id'), nullable=True)
+                Column('User_id_two', Integer, ForeignKey('users.id'), nullable=True),
                 )
 
 

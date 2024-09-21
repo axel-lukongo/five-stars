@@ -15,34 +15,34 @@ def client():
 """
 This test case creates a user using the GraphQL mutation.
 """
-# def test_mutation_User(client):
-#     mutation = """
-#     mutation {
-#       creatUser(Firstname:"test____test", Lastname: "test__test__", Pseudo:"test____pseudotest", Password:"mypassword", Age:1230)
-#     }
-#     """
-#     response = client.post("/graphql", json={"query": mutation})
-#     assert response.status_code == 200
-#     json_response = response.json()
-#     assert json_response["data"]["creatUser"] == 1
+def test_mutation_User(client):
+    mutation = """
+    mutation {
+      creatUser(Firstname:"test____test", Lastname: "test__test__", Pseudo:"test____pseudotest", Password:"mypassword", Age:1230)
+    }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    assert response.status_code == 200
+    json_response = response.json()
+    assert json_response["data"]["creatUser"] == 1
 
 ############## I create a second user ##############
 """
 This test case creates a second user using the GraphQL mutation.
 """
-# def test_mutation_User_sec(client):
-#     mutation = """
-#     mutation {
-#       creatUser(Firstname:"sectest____test", Lastname: "sectest__test__", Pseudo:"sectest____pseudotest", Password:"secmypassword", Age:1230)
-#     }
-#     """
-#     response = client.post("/graphql", json={"query": mutation})
-#     # Je vérifie que la requête a abouti avec un code d'état 200
-#     assert response.status_code == 200
-#     # Je converti le contenu de la réponse en JSON pour faciliter les assertions
-#     json_response = response.json()
-#     # Je verifie le retour de la mutation
-#     assert json_response["data"]["creatUser"] == 2
+def test_mutation_User_sec(client):
+    mutation = """
+    mutation {
+      creatUser(Firstname:"sectest____test", Lastname: "sectest__test__", Pseudo:"sectest____pseudotest", Password:"secmypassword", Age:1230)
+    }
+    """
+    response = client.post("/graphql", json={"query": mutation})
+    # Je vérifie que la requête a abouti avec un code d'état 200
+    assert response.status_code == 200
+    # Je converti le contenu de la réponse en JSON pour faciliter les assertions
+    json_response = response.json()
+    # Je verifie le retour de la mutation
+    assert json_response["data"]["creatUser"] == 2
 
 #######################################################################################
 """

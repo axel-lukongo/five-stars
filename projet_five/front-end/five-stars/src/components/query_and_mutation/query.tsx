@@ -71,3 +71,27 @@ export const GET_TEAMS = gql`
     }
   }
 `;
+
+export const GET_CHAT_ROOM = gql `
+  query GetChatRoom($UserIdOne: Int!, $UserIdTwo: Int!) {
+    getChatRoom(UserIdOne: $UserIdOne, UserIdTwo: $UserIdTwo) {
+      id
+      # interlocutorNameOne
+      # interlocutorNameTwo
+    }
+  }
+`;
+
+// query{
+//   getPrivateMessages(ChatRoomId:1){
+//     MessageContent
+//   }
+// }
+export const  GET_PRV_MESSAGE = gql`
+  query GetPrivateMessages($ChatRoomId: Int!){
+    getPrivateMessages(ChatRoomId: $ChatRoomId) {
+      MessageContent
+      senderName
+    }
+  }
+`

@@ -47,3 +47,8 @@ export const CREATE_CHAT_ROOM = gql`
 `;
 
 
+export const CREAT_PRV_MESSAGE = gql`
+  mutation CreatPrvMessage($SenderName: String!, $ChatRoomId: Int!, $Content: String!){
+    creatPrvMessage(Content:$Content, ChatRoomId:$ChatRoomId, SenderName: $SenderName)
+  }
+`

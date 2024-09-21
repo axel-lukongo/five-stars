@@ -21,22 +21,37 @@ export default function ChatList({ navigation }) {
   const route = useRoute();
   const UserId = parseInt(route.params.UserId, 10);
   const [discussions, setDiscussions] = useState([]);
-
-  const { loading, error, data } = useQuery(GET_ALL_MY_CHAT_ROOM, {
+  const { loading, error, data, refetch } = useQuery(GET_ALL_MY_CHAT_ROOM, {
     variables: { UserId: UserId },
     skip: !UserId,
   });
   useEffect(() => {
-    
+    refetch();
     if (data && data.getallMyChatRoom) {
       setDiscussions(
         data.getallMyChatRoom.map((room) => ({
-          id: room.UserIdOne === UserId? room.UserIdTwo:room.UserIdOne,
-          title: room.UserIdOne === UserId? room.interlocutorNameTwo: room.interlocutorNameOne
+          id: room.UserIdOne === UserId ? room.UserIdTwo : room.UserIdOne,
+          title:
+            room.UserIdOne === UserId
+              ? room.interlocutorNameTwo
+              : room.interlocutorNameOne,
         }))
       );
     }
-  }, [UserId]);
+  }, [UserId, refetch]);
+
+  const handleDiscussionPress = (discussion) => {
+    // console.log("dans list ==>>> ", UserId);
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: "ChatPage",
+          params: { interlocuteurId: discussion.id, userId: UserId },
+        },
+      ],
+    });
+  };
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -56,12 +71,6 @@ export default function ChatList({ navigation }) {
     </TouchableOpacity>
   );
 
-  const handleDiscussionPress = (discussion) => {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "ChatPage", params: { interlocuteurId: discussion.id } }],
-    });
-  };
   return (
     <LinearGradient colors={["#EBEBEB", "#EBEBEB"]} style={styles.container}>
       {/* Titre de la page, fixe */}

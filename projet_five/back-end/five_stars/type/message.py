@@ -3,7 +3,9 @@ from conn.database import conn
 import typing
 from models.models import Message
 from type.schema import MessageType
+from type.websocket_manager import broadcast_message
 from sqlalchemy.exc import SQLAlchemyError
+import json
 
 @strawberry.type
 class MessageQuery:
@@ -35,13 +37,23 @@ class MessageMutation:
             return e
 
     @strawberry.mutation
-    def creatPrvMessage(self, Content:str, Sender_name: str, Chat_room_id:int) ->str:
+    async def creatPrvMessage(self, Content:str, Sender_name: str, Chat_room_id:int) ->str:
         try:
           result = conn.execute(Message.insert().values(
               MessageContent= Content, sender_name= Sender_name, chat_room_id= Chat_room_id, is_team_message=False
               )
             )
           conn.commit()
+          messages_to_send = {
+              "MessageContent": Content,
+              "sender_name": Sender_name,
+              "chat_room_id": Chat_room_id
+          }
+          message_json = json.dumps(messages_to_send)
+
+          print("======>>>>>> ", message_json)
+          await broadcast_message(message_json)
+
           return "message created"
         except SQLAlchemyError as e:
             return e

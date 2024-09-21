@@ -10,42 +10,91 @@ import {
   Keyboard,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { GET_USER } from "../query_and_mutation/query";
-import { useQuery } from "@apollo/client";
+import {
+  GET_CHAT_ROOM,
+  GET_PRV_MESSAGE,
+  GET_USER,
+} from "../query_and_mutation/query";
+import { useMutation, useQuery } from "@apollo/client";
+import { CREAT_PRV_MESSAGE } from "../query_and_mutation/mutation";
 
 const ChatPage = ({ navigation, route }) => {
-  const { interlocuteurId } = route.params;
+  const { interlocuteurId, userId } = route.params;
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const [UserId, setUserId] = useState("");
+  const [createPrvMessage, { loading, error, data }] =
+    useMutation(CREAT_PRV_MESSAGE);
+  const [ChatId, setChatId] = useState("");
   const [headerHeight, setHeaderHeight] = useState(0);
   const [interlocutorName, setInterlocutorName] = useState("");
-  const { loading, error, data } = useQuery(GET_USER, {
+  const [messages, setMessages] = useState([]);
+
+  //######################### i grab data of interlocutor #################
+  const {
+    loading: userLoading,
+    error: userError,
+    data: userData,
+  } = useQuery(GET_USER, {
     variables: { id: interlocuteurId },
   });
 
   useEffect(() => {
-    if (data && data.getUser) {
-      setInterlocutorName(data.getUser.lastname);
+    if (userData && userData.getUser) {
+      setInterlocutorName(userData.getUser.lastname);
     }
-  }, [data]);
+  }, [userData]);
 
   useLayoutEffect(() => {
     const getinfo = async () => {
       setFirstname(await AsyncStorage.getItem("Firstname"));
       setLastname(await AsyncStorage.getItem("Lastname"));
-      setUserId(await AsyncStorage.getItem("UserId"));
     };
-
     getinfo();
   }, []);
 
+  //######################### i grab all the id of the Room #################
+  const {
+    loading: chatLoading,
+    error: chatError,
+    data: chatData,
+  } = useQuery(GET_CHAT_ROOM, {
+    variables: { UserIdOne: userId, UserIdTwo: interlocuteurId },
+  });
+
+  useEffect(() => {
+    if (chatData && chatData.getChatRoom) {
+      setChatId(chatData.getChatRoom.id);
+    }
+  }, [chatData]);
+
+  //######################### i grab all message #################
+  const {
+    loading: msgLoading,
+    error: msgError,
+    data: msgData,
+    refetch,
+  } = useQuery(GET_PRV_MESSAGE, {
+    variables: { ChatRoomId: ChatId },
+  });
+
+  useEffect(() => {
+    refetch();
+    if (msgData && msgData.getPrivateMessages) {
+      const newMessages = msgData.getPrivateMessages.map((msg) => ({
+        id: Math.random().toString(), // Assurez-vous que chaque message a un identifiant unique
+        text: msg.MessageContent, // Utilisez correctement le champ MessageContent
+        sendername: msg.senderName,
+      }));
+      setMessages(newMessages);
+    }
+  }, [msgData, refetch]);
+
+  //######################### i go back to the preview page #################
   const goBack = () => {
     navigation.reset({
       index: 0,
-      routes: [{ name: "ChatList", params: { UserId: UserId } }],
+      routes: [{ name: "ChatList", params: { UserId: userId } }],
     });
   };
   const onHeaderLayout = (event) => {
@@ -53,8 +102,16 @@ const ChatPage = ({ navigation, route }) => {
     setHeaderHeight(height);
   };
 
+  //######################### i Send the message #################
   const sendMessage = () => {
     if (message.trim() !== "") {
+      createPrvMessage({
+        variables: {
+          SenderName: firstname,
+          ChatRoomId: ChatId,
+          Content: message,
+        },
+      });
       setMessages((prevMessages) => [
         ...prevMessages,
         { id: Math.random().toString(), text: message },
@@ -81,7 +138,7 @@ const ChatPage = ({ navigation, route }) => {
             <View style={styles.myNameContainer}>
               <Text style={styles.myName}>
                 {" "}
-                {firstname} {lastname}{" "}
+                {item.sendername ? item.sendername : firstname}{" "}
               </Text>
             </View>
             <Text style={styles.messageText}>{item.text}</Text>

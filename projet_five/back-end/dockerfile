@@ -5,7 +5,8 @@ RUN apt-get update && \
     apt-get install -y libpq-dev gcc postgresql-client
 
 # Installation de SQLAlchemy et psycopg2
-RUN pip install sqlalchemy psycopg2-binary
+RUN pip install sqlalchemy psycopg2-binary websockets
+
 
 COPY ./myscript.sh .
 

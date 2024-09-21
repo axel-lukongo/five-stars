@@ -40,3 +40,8 @@ class MessageType:
     sender_name: str
     team_id: int
     chat_room_id: int
+    
+
+@strawberry.type
+class Subscription:
+    newMessage: MessageType  # Définir le type de message que tu veux envoyer

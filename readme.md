@@ -17,6 +17,14 @@ or
 
 ```http://127.0.0.1:8000/login```.
 
+you can create and login with this 
+```
+{
+  "username": "user1",
+  "password": "mypassword"
+}
+```
+
 For the other methode, be sur to have minikube installed
 
 ## With kubernetes
@@ -64,3 +72,11 @@ with a POST:
 or 
 
 ```http://127.0.0.1:30001/login```.
+
+you can create and login with this 
+```
+{
+  "username": "user1",
+  "password": "mypassword"
+}
+```

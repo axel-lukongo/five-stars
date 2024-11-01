@@ -59,8 +59,8 @@ now you can test the project with postman
 
 with a POST:
 
-```http://127.0.0.1:8000/register```
+```http://127.0.0.1:30001/register```
 
 or 
 
-```http://127.0.0.1:8000/login```.
+```http://127.0.0.1:30001/login```.

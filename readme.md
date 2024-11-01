@@ -1,5 +1,5 @@
 
-To test the project you have to download minikube orh you can also use a docker compose
+To test the project you have to download minikube or you can also use a docker compose
 
 ## With docker compose
 

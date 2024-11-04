@@ -7,3 +7,6 @@
 [submodule "services/friends"]
 	path = services/friends
 	url = https://github.com/axel-lukongo/five-stars_friends_svc.git
+[submodule "front-end"]
+	path = front-end
+	url = https://github.com/axel-lukongo/five-stars_front-end.git

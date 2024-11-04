@@ -1,3 +1,8 @@
+## how to use
+after you clone this repository use this commande
+``` git submodule update --remote --merge```
+
+this command will update your submodules to the last commit available 
 
 To test the project you have to download minikube orh you can also use a docker compose
 
